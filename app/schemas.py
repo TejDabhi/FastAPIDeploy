@@ -10,8 +10,18 @@ class PostBase(BaseModel):
 class Create_Post(PostBase):
     pass
 
+
+class UserOut(BaseModel):
+    id:int
+    email:EmailStr
+    created_at:datetime
+    class Config:
+        from_attributes=True
+
 class Post(PostBase):
     id:int
+    owner_id:int
+    owner:UserOut
     class Config:
         from_attributes=True
 
@@ -20,12 +30,6 @@ class UserCreate(BaseModel):
     email:EmailStr
     password:str
 
-class UserOut(BaseModel):
-    id:int
-    email:EmailStr
-    created_at:datetime
-    class Config:
-        from_attributes=True
 
 class UserLogin(BaseModel):
     email:EmailStr
