@@ -1,6 +1,10 @@
-from pydantic import BaseModel,EmailStr
+from pydantic import BaseModel,EmailStr,conint
 from datetime import datetime
 from typing import Optional
+
+
+
+
 
 class PostBase(BaseModel):
     title:str
@@ -26,6 +30,7 @@ class Post(PostBase):
         from_attributes=True
 
 
+
 class UserCreate(BaseModel):
     email:EmailStr
     password:str
@@ -34,6 +39,17 @@ class UserCreate(BaseModel):
 class UserLogin(BaseModel):
     email:EmailStr
     password:str
+
+
+class Vote(BaseModel):
+    post_id:int
+    dir:conint(ge=0, le=1)
+
+class PostOut(PostBase):
+    post:Post
+    votes:int
+    class Config:
+        from_attributes=True
 
 class Token(BaseModel):
     access_token:str
