@@ -1,59 +1,63 @@
-from pydantic import BaseModel,EmailStr,conint
+from pydantic import BaseModel, EmailStr, conint
 from datetime import datetime
 from typing import Optional
 
 
-
-
-
 class PostBase(BaseModel):
-    title:str
-    content:str
-    published:bool =True
+    title: str
+    content: str
+    published: bool = True
+
 
 class Create_Post(PostBase):
     pass
 
 
 class UserOut(BaseModel):
-    id:int
-    email:EmailStr
-    created_at:datetime
+    id: int
+    email: EmailStr
+    created_at: datetime
+
     class Config:
-        from_attributes=True
+        from_attributes = True
+
 
 class Post(PostBase):
-    id:int
-    owner_id:int
-    owner:UserOut
-    class Config:
-        from_attributes=True
+    id: int
+    owner_id: int
+    owner: UserOut
 
+    class Config:
+        from_attributes = True
 
 
 class UserCreate(BaseModel):
-    email:EmailStr
-    password:str
+    email: EmailStr
+    password: str
 
 
 class UserLogin(BaseModel):
-    email:EmailStr
-    password:str
+    email: EmailStr
+    password: str
 
 
 class Vote(BaseModel):
-    post_id:int
-    dir:conint(ge=0, le=1)
+    post_id: int
+    dir: conint(ge=0, le=1)
 
-class PostOut(PostBase):
-    post:Post
-    votes:int
+
+class PostOut(BaseModel):
+    post: Post
+    votes: int
+
     class Config:
-        from_attributes=True
+        from_attributes = True
+
 
 class Token(BaseModel):
-    access_token:str
-    token_type:str
+    access_token: str
+    token_type: str
+
 
 class TokenData(BaseModel):
-    id:Optional[int]=None
+    id: Optional[int] = None
