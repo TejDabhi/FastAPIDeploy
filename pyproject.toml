@@ -1,0 +1,20 @@
+[project]
+name = "practice-rag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "TejDabhi", email = "157304155+TejDabhi@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "alembic>=1.20.0",
+    "python-jose[cryptography]>=3.5.0",
+]
+
+[project.scripts]
+practice-rag = "practice_rag:main"
+
+[build-system]
+requires = ["uv_build>=0.12.15,<0.13.0"]
+build-backend = "uv_build"
